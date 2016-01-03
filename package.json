@@ -1,0 +1,34 @@
+{
+  "name": "nodalion-mongo",
+  "version": "1.0.0",
+  "description": "A MongoDB database driver for Nodalion",
+  "main": "nodalionMongo.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha -C -R dot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brosenan/nodalion-mongo.git"
+  },
+  "keywords": [
+    "mongodb",
+    "cedalion"
+  ],
+  "author": "Boaz Rosenan <brosenan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brosenan/nodalion-mongo/issues"
+  },
+  "homepage": "https://github.com/brosenan/nodalion-mongo#readme",
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  },
+  "dependencies": {
+    "mongodb": "^2.1.2",
+    "nodalion": "^1.0.3",
+    "suspend": "^0.7.0"
+  }
+}
