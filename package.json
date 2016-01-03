@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha -C -R dot"
+      "test": "docker run -i --link=mongo -v $PWD:/project brosenan/nodalion npm run-script test-in-container",
+      "test-in-container": "./node_modules/mocha/bin/mocha -C -R dot"
   },
   "repository": {
     "type": "git",
