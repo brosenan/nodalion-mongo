@@ -5,7 +5,6 @@ var $S = require('suspend'), $R = $S.resume, $T = function(gen) { return functio
 var MongoClient = require('mongodb').MongoClient;
 
 var nodalion = require('nodalion');
-var serializeTerm = require('../serializeTerm.js');
 
 var ns = nodalion.namespace('/nodalion', ['trans',
 					  'set',
@@ -44,7 +43,7 @@ var doTask = function(term, cb) {
 Array.prototype.meaning = function() { return this; };
 
 function encodeUnknown(term) {
-    return serializeTerm.encodeTerm(term, {});
+    return nodalion.encodeTerm(term, {});
 };
 
 describe('mongodb', function(){

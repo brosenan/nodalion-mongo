@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "mongodb": "^2.1.2",
-    "nodalion": "^1.0.3",
+    "nodalion": "^1.0.5",
     "suspend": "^0.7.0"
   }
 }

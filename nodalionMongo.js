@@ -3,7 +3,6 @@ var $S = require('suspend'), $R = $S.resume;
 var MongoClient = require('mongodb').MongoClient;
 
 var Nodalion = require('nodalion');
-var serializeTerm = require('./serializeTerm.js');
 
 var ns = Nodalion.namespace('/nodalion', ['value', 'counterValue', 'bind']);
 
@@ -44,18 +43,18 @@ var updateNameMap = $S.callback(function*(db, nodalion) {
     _namesArr.forEach(function(name, i) {
 	_namesMap[name] = i;
     });
-    yield serializeTerm.updateNameDict(nodalion, _namesMap, _namesArr, $R());
+    yield Nodalion.updateNameDict(nodalion, _namesMap, _namesArr, $R());
     if(_namesArr.length > oldLen) {
 	yield db.collection('_names').update({_id: 'names'}, {$set: {namesArr: _namesArr}}, {upsert: true}, $R());
     }
 });
 
 function encode(term) {
-    return serializeTerm.encodeTerm(term, _namesMap);
+    return Nodalion.encodeTerm(term, _namesMap);
 }
 
 function decode(b64) {
-    return serializeTerm.decodeTerm(b64, _namesArr);
+    return Nodalion.decodeTerm(b64, _namesArr);
 }
 
 exports.db = function(url) {
