@@ -182,7 +182,7 @@ ns._register('addToCounter', function(family, key, value) {
 	    if(!update.$set) {
 		update.$set = {};
 	    }
-	    update.$set['debug.' + family + '.' + ekey + '.k'] = key;
+	    update.$set['debug.' + family + '.' + ekey + '.k'] = key.toString();
 	}
 	
 	postProcessing.push(function(res) {
