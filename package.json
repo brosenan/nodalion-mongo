@@ -1,14 +1,14 @@
 {
   "name": "nodalion-mongo",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A MongoDB database driver for Nodalion",
   "main": "nodalionMongo.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-      "test": "docker run -i --link=mongo -v $PWD:/project -e NODALION_DEBUG= brosenan/nodalion npm run-script test-in-container",
-      "test-in-container": "./node_modules/mocha/bin/mocha -C -R dot"
+    "test": "docker run -i --link=mongo -v $PWD:/project -e NODALION_DEBUG= brosenan/nodalion npm run-script test-in-container",
+    "test-in-container": "./node_modules/mocha/bin/mocha -C -R dot"
   },
   "repository": {
     "type": "git",
