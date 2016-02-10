@@ -13,6 +13,7 @@ var _nodalion;
 var _namesArr = [];
 var _namesMap = {};
 var _gettingList = false;
+var DEBUG = ('NODALION_DEBUG' in process.env);
 
 function getDB(nodalion, cb) {
     if(_db) {
@@ -167,21 +168,29 @@ ns._register('getAll', function(family) {
 
 ns._register('addToCounter', function(family, key, value) {
     return function(update, fields, query, options, postProcessing) {
-	key = encode(key);
+	var ekey = encode(key);
 	family = '#' + family;
 
 	if(!update.$inc) {
 	    update.$inc = {};
 	}
-	update.$inc[family + '.' + key] = value;
-	fields[family + '.' + key] = 1;
+	update.$inc[family + '.' + ekey] = value;
+	fields[family + '.' + ekey] = 1;
+
+	if(DEBUG) {
+	    update.$inc['debug.' + family + '.' + ekey + '.v'] = value;
+	    if(!update.$set) {
+		update.$set = {};
+	    }
+	    update.$set['debug.' + family + '.' + ekey + '.k'] = key;
+	}
 	
 	postProcessing.push(function(res) {
 	    if(!(family in res)) {
 		res[family] = {};
 	    }
-	    if(!(key in res[family])) {
-		res[family][key] = 0;
+	    if(!(ekey in res[family])) {
+		res[family][ekey] = 0;
 	    }
 	});
     };
