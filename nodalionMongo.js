@@ -88,6 +88,15 @@ ns._register('trans', function(coll, row, ops) {
 	    query._id = encode(row);
 	    var result;
 	    if(Object.keys(update).length > 0) {
+		if(DEBUG) {
+		    if(update.$set) {
+			update.$set['debug._row'] = row;
+		    } else {
+			update.$set = {
+			    'debug._row': row
+			};
+		    }
+		}
 		result = yield db.collection(coll).findOneAndUpdate(query, 
 								    update, 
 								    options, $R());
