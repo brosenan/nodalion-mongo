@@ -90,10 +90,10 @@ ns._register('trans', function(coll, row, ops) {
 	    if(Object.keys(update).length > 0) {
 		if(DEBUG) {
 		    if(update.$set) {
-			update.$set['debug._row'] = row;
+			update.$set['debug._row'] = row.toString();
 		    } else {
 			update.$set = {
-			    'debug._row': row
+			    'debug._row': row.toString(),
 			};
 		    }
 		}
